@@ -24,13 +24,13 @@ def print_header
 end
 
 def print(students)
-  students.each do |student|
-  puts "#{student[:name]} (#{student[:cohort]} cohort)"
-end
+  students.each_with_index do |student, index|
+  puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)"
 end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
+end
 end
 
 # nothing happens until we call the methods
