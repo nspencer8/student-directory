@@ -24,11 +24,11 @@ def print_header
 end
 
 def print_students(students)
- students.each do |student|
-   if student[:name].each_char.first == "T"
-     puts "#{student[:name]} (#{student[:cohort]} cohort)"
-   end
- end
+  students.each do |student|
+    if student[:name].length < 12
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
 end
 
 def print_footer(students)
