@@ -23,18 +23,20 @@ def print_header
   puts "____________"
 end
 
-def print(students)
-  students.each.with_index(1) do |student, index|
-  puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)"
+def print_students(students)
+ students.each do |student|
+   if student[:name].each_char.first == "T"
+     puts "#{student[:name]} (#{student[:cohort]} cohort)"
+   end
+ end
 end
 
 def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
-end
 
 # nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+print_students(students)
 print_footer(students)
