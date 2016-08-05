@@ -23,12 +23,20 @@ def print_header
   puts "____________"
 end
 
-def print_students(students)
-  students.each do |student|
-    if student[:name].length < 12
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+#define printing names method
+  def print(students)
+  puts "Enter the letter you wish to match names of: "
+ letter = gets.chomp
+ matching_letter = /^#{letter.upcase}/
+ students.each do |student|
+ puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name] =~ matching_letter
+ index=0
+ while index < students.length
+  student = students[index]
+   puts "#{student[:name]} (#{student[:cohort]} cohort)"
+     index += 1
+    end
   end
-end
 end
 
 def print_footer(students)
@@ -38,5 +46,5 @@ end
 # nothing happens until we call the methods
 students = input_students
 print_header
-print_students(students)
+print(students)
 print_footer(students)
