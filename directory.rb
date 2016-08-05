@@ -26,7 +26,7 @@ end
 #define printing names method
 
 def print_students(students)
-  counter = 0
+  counter = 1
   while students.length >= counter do
     students.each do |student|
       if student[:name].length < 12
