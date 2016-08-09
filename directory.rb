@@ -4,12 +4,12 @@ def input_students
 #create an empty array
  students = []
   # get the first name
-  name = gets.chomp
+  name = gets.strip
 
 while !name.empty? do
   puts "Please enter the students cohort"
   # get the first name
-  month = gets.chomp
+  month = gets.strip
   until ["January",
                   "February",
                   "March",
@@ -24,7 +24,7 @@ while !name.empty? do
                   "December"
       ].include?(month)
       puts "Please put correct month"
-      month = gets.chomp
+      month = gets.strip
     end
   # while the name is not empty, repeat this code
     if month == ""
@@ -38,7 +38,7 @@ while !name.empty? do
       puts "Now we have #{students.count} students"
       # get another name from the user
     end
-  name = gets.chomp
+  name = gets.strip
   end
   students
 end
