@@ -6,12 +6,11 @@ def input_students
   # get the first name
   name = gets.chomp
 
-
-  while !name.empty? do
-    puts "Please enter the students cohort"
-    # get the first name
-    month = gets.chomp
-    until ["January",
+while !name.empty? do
+  puts "Please enter the students cohort"
+  # get the first name
+  month = gets.chomp
+  until ["January",
                   "February",
                   "March",
                   "April",
@@ -27,16 +26,19 @@ def input_students
       puts "Please put correct month"
       month = gets.chomp
     end
-    # while the name is not empty, repeat this code
-      if month == ""
-        month = "January"
-      end
+  # while the name is not empty, repeat this code
+    if month == ""
+      month = "January"
+    end
   # add the student hash to the array
-      students << {name: name, cohort: month.to_sym}
+    students << {name: name, cohort: month.to_sym}
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else
       puts "Now we have #{students.count} students"
       # get another name from the user
-      name = gets.chomp
-
+    end
+  name = gets.chomp
   end
   students
 end
@@ -56,9 +58,6 @@ def print_footer
   puts "____________".center(90)
   puts "End of student profile".center(90)
 end
-
-
-
 
 # nothing happens until we call the methods
 # nothing happens until we call the methods
