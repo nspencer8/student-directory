@@ -1,89 +1,65 @@
-def input_students
-# students name
- puts "Please enter the names of the students"
-#create an empty array
- students = []
-  # get the first name
-  name = gets.strip
+@students = [] # an empty array accessible to all methods
 
-while !name.empty? do
-  puts "Please enter the students cohort"
+def input_students
+  puts "Please enter the names of the students"
+  puts "To finish, just hit return twice"
   # get the first name
-  month = gets.strip
-  until ["January",
-                  "February",
-                  "March",
-                  "April",
-                  "May",
-                  "June",
-                  "July",
-                  "August",
-                  "September",
-                  "October",
-                  "November",
-                  "December"
-      ].include?(month)
-      puts "Please put correct month"
-      month = gets.strip
-    end
+  name = gets.chomp
   # while the name is not empty, repeat this code
-    if month == ""
-      month = "January"
-    end
-  # add the student hash to the array
-    students << {name: name, cohort: month.to_sym}
-    if students.count == 1
-      puts "Now we have #{students.count} student"
-    else
-      puts "Now we have #{students.count} students"
-      # get another name from the user
-    end
-  name = gets.strip
+  while !name.empty? do
+    # add the student hash to the array
+    @students << {name: name, cohort: :november}
+    puts "Now we have #{@students.count} students"
+    # get another name from the user
+    name = gets.chomp
   end
-  students
 end
 
 def interactive_menu
-   students = []
   loop do
-    # 1. print the menu and ask the user what to do
-    puts "1. Input the students"
-    puts "2. Show the Students"
-    puts "9. Exit" # 9 because we'll be adding more items
-    # 2. read the input and save it into a variable
-    selection = gets.chomp
-    # 3. do what the user has asked
-    case selection
-    when "1"
-      #input the students
-      students = input_students
-    when "2"
-      # show the students
-      print_header
-      print(students)
-      print_footer
-    when "9"
-      exit # this will casue the program to terminate
-    else
-      puts "I don't know what you meant, try again"
-    end
-end
+    print_menu
+    process(gets.chomp)
+  end
 end
 
-  def print_header
-    puts "Please see below profile of a student of villains Academy".center(90)
-    puts "____________".center(90)
+def print_menu
+  puts "1. Input the students"
+  puts "2. Show the students"
+  puts "9. Exit" # 9 because we'll be adding more items
+end
+
+def show_students
+  print_header
+  print_student_list
+  print_footer
+end
+
+def process(selection)
+  case selection
+  when "1"
+    input_students
+  when "2"
+    show_students
+  when "9"
+    exit # this will cause the program to terminate
+  else
+    puts "I don't know what you meant, try again"
   end
+end
 
-  #define printing names method
+def print_header
+  puts "The students of Villains Academy"
+  puts "-------------"
+end
 
-  def print_students(student)
-      puts student.group_by { |entry| entry[:cohort] }
+def print_student_list
+  @students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
+end
 
-  def print_footer
-    puts "____________".center(90)
-    puts "End of student profile".center(90)
-  end
+def print_footer
+  puts "Overall, we have #{@students.count} great students"
+end
 
-students = interactive_menu
+interactive_menu
