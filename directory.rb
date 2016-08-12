@@ -36,7 +36,7 @@ def input_into_array(name, cohort)
     @students << {name: name, cohort: cohort.to_sym}
   end
 
-
+# option 1
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -61,7 +61,7 @@ def input_students
   @students
 end
 
-
+# option 2
 def show_students
   print_header
   print_student_list
@@ -83,6 +83,7 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
+# option 3
 def save_students
   # open the file for writing
   file = File.open("students.csv", "w")
@@ -95,6 +96,7 @@ def save_students
   file.close
 end
 
+# option 4
 def load_students(filename = "students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
@@ -105,7 +107,7 @@ def load_students(filename = "students.csv")
 end
 
 def try_load_students
-  filename = ARGV.first# first argument from the command line
+  filename = ARGV.first # first argument from the command line
   return if filename.nil? # get out of the method if it isn't given
   if File.exists?(filename) # if it exists
     load_students(filename)
@@ -116,5 +118,8 @@ def try_load_students
   end
 end
 
+
+
 try_load_students
+load_students
 interactive_menu
